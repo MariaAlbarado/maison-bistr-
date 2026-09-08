@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  min-height: 100vh;
+  background: #1c1a18;
+  color: white;
+  padding: 40px 30px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.logo h1 {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.logo p {
+  font-size: 14px;
+  color: #c9b9a8;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 50px;
+}
+
+.menu button {
+  background: transparent;
+  border: none;
+  color: white;
+  text-align: left;
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.menu button:hover {
+  color: #c9b9a8;
+}
+
+.menu .ativo {
+  font-weight: bold;
+}
+
+.frase {
+  margin-top: auto;
+  font-size: 14px;
+  color: #c9b9a8;
+}

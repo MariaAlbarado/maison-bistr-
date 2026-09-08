@@ -1,0 +1,61 @@
+.home {
+  padding: 40px;
+  flex: 1;
+  background: #f7f3ee;
+}
+
+.home h2 {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+.home p {
+  margin-bottom: 25px;
+}
+
+.legenda {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.mesas {
+  display: grid;
+  grid-template-columns: repeat(3, 180px);
+  gap: 20px;
+}
+
+.mesa {
+  height: 150px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  font-size: 16px;
+}
+
+.mesa strong {
+  font-size: 24px;
+}
+
+.mesa span {
+  text-transform: capitalize;
+}
+
+.livre {
+  background: #dff3e7;
+}
+
+.reservada {
+  background: #f7e6b8;
+}
+
+.ocupada {
+  background: #f3cccc;
+}
