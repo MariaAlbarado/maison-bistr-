@@ -1,10 +1,17 @@
 import Home from "./pages/home";
+import iconeRestaurante from "./assets/maison_icon.png";
 
 function App() {
   return (
     <div className="app">
       <aside className="sidebar">
         <div className="logo">
+          <img
+            src={iconeRestaurante}
+            alt="Ícone Maison Bistrô"
+            className="icone-restaurante"
+          />
+
           <h1>Maison Bistrô</h1>
           <p>Reservas</p>
         </div>
