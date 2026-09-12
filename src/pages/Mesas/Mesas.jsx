@@ -19,6 +19,8 @@ function Mesas() {
 
   const [mesaSelecionada, setMesaSelecionada] = useState("");
 
+  
+
   function mudarStatus(novoStatus) {
     setMesas(
       mesas.map((mesa) =>
