@@ -1,6 +1,6 @@
-import styles from "./home.module.css";
+import styles from "./Mesas.module.css";
 
-function Home() {
+function Mesas() {
   const mesas = [
     { numero: "01", status: "livre" },
     { numero: "02", status: "reservada" },
@@ -50,12 +50,13 @@ function Home() {
           <input type="text" placeholder="Digite o nome do cliente" />
 
           <label>Mesa</label>
+
           <select>
             <option>Selecione a mesa</option>
-            <option>Mesa 01</option>
-            <option>Mesa 02</option>
-            <option>Mesa 03</option>
-            <option>Mesa 04</option>
+
+            {mesas.map((mesa) => (
+              <option key={mesa.numero}>Mesa {mesa.numero}</option>
+            ))}
           </select>
 
           <label>Data</label>
@@ -74,4 +75,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Mesas;

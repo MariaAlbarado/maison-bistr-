@@ -8,28 +8,38 @@
   align-items: flex-start;
 }
 
+/* ÁREA DAS MESAS */
 .areaMesas {
   flex: 1;
+  min-width: 0;
 }
 
 .areaReserva {
   width: 390px;
+  flex-shrink: 0;
+
   background: white;
   padding: 24px;
+
   border-radius: 16px;
+
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 
   position: relative;
 }
 
-/* Linha que separa as mesas da área de reserva */
+/* LINHA ENTRE MESAS E RESERVA */
 .areaReserva::before {
   content: "";
+
   position: absolute;
+
   left: -23px;
   top: 0;
+
   width: 2px;
   height: 100%;
+
   background: #868685;
 }
 
@@ -42,31 +52,54 @@
   margin-bottom: 22px;
 }
 
+/* LEGENDA */
 .legenda {
   display: flex;
   gap: 22px;
+
   margin-bottom: 22px;
 }
 
+/* GRID DAS MESAS */
 .mesas {
   display: grid;
-  grid-template-columns: repeat(3, 150px);
+
+  grid-template-columns: repeat(4, minmax(110px, 1fr));
+
   gap: 16px;
+
+  width: 100%;
 }
 
+/* CADA MESA */
 .mesa {
+  width: 100%;
   height: 125px;
+
   border: none;
   border-radius: 12px;
+
   cursor: pointer;
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
+
   gap: 8px;
 
   font-size: 15px;
+
+  transition: 0.2s;
+}
+
+.mesa:hover {
+  transform: translateY(-3px);
+}
+
+.mesa:active {
+  transform: scale(0.97);
 }
 
 .mesa strong {
@@ -77,6 +110,7 @@
   text-transform: capitalize;
 }
 
+/* STATUS */
 .livre {
   background: #dff3e7;
 }
@@ -89,10 +123,13 @@
   background: #f3cccc;
 }
 
+/* FORMULÁRIO */
 .formReserva {
   display: flex;
   flex-direction: column;
+
   gap: 10px;
+
   margin-top: 20px;
 }
 
@@ -104,22 +141,42 @@
 .formReserva input,
 .formReserva select {
   width: 100%;
+
   padding: 13px;
+
   border: 1px solid #ccc;
   border-radius: 9px;
+
   font-size: 15px;
 }
 
 .formReserva button {
   margin-top: 10px;
+
   width: 100%;
+
   padding: 14px;
+
   border: none;
   border-radius: 9px;
+
   background: #8b5e3c;
+
   color: white;
+
   font-size: 16px;
+
   cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.formReserva button:hover {
+  background: #a96f40;
+}
+
+.formReserva button:active {
+  transform: scale(0.98);
 }
 
 /* TABLET */
@@ -139,13 +196,12 @@
   }
 
   .mesas {
-    grid-template-columns: repeat(3, 150px);
-    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .areaReserva {
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
 
   .areaReserva::before {
@@ -166,12 +222,12 @@
   .legenda {
     flex-wrap: wrap;
     justify-content: center;
+
     gap: 12px;
   }
 
   .mesas {
-    grid-template-columns: repeat(2, 150px);
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .mesa {
@@ -187,10 +243,5 @@
 @media (max-width: 450px) {
   .mesas {
     grid-template-columns: 1fr;
-    width: 100%;
-  }
-
-  .mesa {
-    width: 100%;
   }
 }

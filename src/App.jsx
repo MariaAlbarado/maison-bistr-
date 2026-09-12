@@ -1,4 +1,8 @@
-import Home from "./pages/home";
+import Home from "./pages/Home/Home";
+import Mesas from "./pages/Mesas/Mesas";
+import Reservas from "./pages/Reservas/Reservas";
+
+import { Routes, Route, Link } from "react-router-dom";
 import iconeRestaurante from "./assets/maison_icon.png";
 
 function App() {
@@ -17,9 +21,9 @@ function App() {
         </div>
 
         <nav className="menu">
-          <button className="ativo">Mesas</button>
-          <button>Reservas</button>
-          <button>Clientes</button>
+          <Link to="/">Home</Link>
+          <Link to="/mesas">Mesas</Link>
+          <Link to="/reservas">Reservas</Link>
         </nav>
 
         <div className="frase">
@@ -28,7 +32,11 @@ function App() {
         </div>
       </aside>
 
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/mesas" element={<Mesas />} />
+        <Route path="/reservas" element={<Reservas />} />
+      </Routes>
     </div>
   );
 }
