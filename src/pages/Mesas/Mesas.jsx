@@ -1,7 +1,8 @@
 import styles from "./Mesas.module.css";
+import { useState } from "react";
 
 function Mesas() {
-  const mesas = [
+  const [mesas, setMesas] = useState([
     { numero: "01", status: "livre" },
     { numero: "02", status: "reservada" },
     { numero: "03", status: "livre" },
@@ -14,7 +15,19 @@ function Mesas() {
     { numero: "10", status: "livre" },
     { numero: "11", status: "ocupada" },
     { numero: "12", status: "livre" },
-  ];
+  ]);
+
+  const [mesaSelecionada, setMesaSelecionada] = useState("");
+
+  function mudarStatus(novoStatus) {
+    setMesas(
+      mesas.map((mesa) =>
+        mesa.numero === mesaSelecionada
+          ? { ...mesa, status: novoStatus }
+          : mesa,
+      ),
+    );
+  }
 
   return (
     <main className={styles.home}>
@@ -23,10 +36,36 @@ function Mesas() {
 
         <p>Clique em uma mesa para ver ou fazer uma reserva.</p>
 
-        <div className={styles.legenda}>
-          <span>🟢 Livre</span>
-          <span>🟡 Reservada</span>
-          <span>🔴 Ocupada</span>
+        <p>
+          Mesa selecionada: <strong>{mesaSelecionada || "nenhuma"}</strong>
+        </p>
+
+        <p className={styles.tituloStatus}>Alterar status da mesa</p>
+
+        <div className={styles.acoesStatus}>
+          <button
+            className={styles.btnLivre}
+            onClick={() => mudarStatus("livre")}
+            disabled={!mesaSelecionada}
+          >
+            Livre
+          </button>
+
+          <button
+            className={styles.btnReservada}
+            onClick={() => mudarStatus("reservada")}
+            disabled={!mesaSelecionada}
+          >
+            Reservada
+          </button>
+
+          <button
+            className={styles.btnOcupada}
+            onClick={() => mudarStatus("ocupada")}
+            disabled={!mesaSelecionada}
+          >
+            Ocupada
+          </button>
         </div>
 
         <div className={styles.mesas}>
@@ -34,6 +73,7 @@ function Mesas() {
             <button
               key={mesa.numero}
               className={`${styles.mesa} ${styles[mesa.status]}`}
+              onClick={() => setMesaSelecionada(mesa.numero)}
             >
               <strong>{mesa.numero}</strong>
               <span>{mesa.status}</span>
@@ -47,15 +87,21 @@ function Mesas() {
 
         <form className={styles.formReserva}>
           <label>Nome</label>
+
           <input type="text" placeholder="Digite o nome do cliente" />
 
           <label>Mesa</label>
 
-          <select>
-            <option>Selecione a mesa</option>
+          <select
+            value={mesaSelecionada}
+            onChange={(event) => setMesaSelecionada(event.target.value)}
+          >
+            <option value="">Selecione a mesa</option>
 
             {mesas.map((mesa) => (
-              <option key={mesa.numero}>Mesa {mesa.numero}</option>
+              <option key={mesa.numero} value={mesa.numero}>
+                Mesa {mesa.numero}
+              </option>
             ))}
           </select>
 
@@ -66,6 +112,7 @@ function Mesas() {
           <input type="time" />
 
           <label>Número de pessoas</label>
+
           <input type="number" placeholder="Ex: 2" />
 
           <button type="submit">Salvar Reserva</button>

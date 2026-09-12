@@ -1,6 +1,8 @@
 import styles from "./Home.module.css";
 import restaurante from "../../assets/maison_login_foto.png";
 
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <main
@@ -21,8 +23,15 @@ function Home() {
           </p>
 
           <div className={styles.botoes}>
-            <button>Fazer uma reserva</button>
-            <button>Ver mesas</button>
+            <div className={styles.botoes}>
+              <Link to="/reservas">
+                <button>Fazer uma reserva</button>
+              </Link>
+
+              <Link to="/mesas">
+                <button>Ver mesas</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

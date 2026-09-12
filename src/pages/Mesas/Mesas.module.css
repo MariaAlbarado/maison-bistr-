@@ -1,11 +1,16 @@
 .home {
   padding: 35px;
+  padding-bottom: 50px;
+
   flex: 1;
+  min-height: 100vh;
+
   background: #f7f3ee;
 
   display: flex;
   gap: 45px;
-  align-items: flex-start;
+
+  align-items: stretch;
 }
 
 /* ÁREA DAS MESAS */
@@ -52,12 +57,57 @@
   margin-bottom: 22px;
 }
 
-/* LEGENDA */
-.legenda {
-  display: flex;
-  gap: 22px;
+/* TÍTULO DOS STATUS */
+.tituloStatus {
+  font-weight: 600;
+  margin-bottom: 10px !important;
+}
 
+/* BOTÕES DE STATUS */
+.acoesStatus {
+  display: flex;
+  gap: 10px;
   margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.acoesStatus button {
+  border: none;
+  padding: 9px 16px;
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.acoesStatus button:hover {
+  transform: translateY(-2px);
+}
+
+.acoesStatus button:active {
+  transform: scale(0.97);
+}
+
+.acoesStatus button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btnLivre {
+  background: #dff3e7;
+}
+
+.btnReservada {
+  background: #f7e6b8;
+}
+
+.btnOcupada {
+  background: #f3cccc;
 }
 
 /* GRID DAS MESAS */
@@ -110,7 +160,7 @@
   text-transform: capitalize;
 }
 
-/* STATUS */
+/* STATUS DAS MESAS */
 .livre {
   background: #dff3e7;
 }
@@ -191,7 +241,7 @@
     text-align: center;
   }
 
-  .legenda {
+  .acoesStatus {
     justify-content: center;
   }
 
@@ -213,17 +263,15 @@
 @media (max-width: 700px) {
   .home {
     padding: 20px;
+    padding-bottom: 35px;
   }
 
   .home h2 {
     font-size: 28px;
   }
 
-  .legenda {
-    flex-wrap: wrap;
+  .acoesStatus {
     justify-content: center;
-
-    gap: 12px;
   }
 
   .mesas {
@@ -243,5 +291,13 @@
 @media (max-width: 450px) {
   .mesas {
     grid-template-columns: 1fr;
+  }
+
+  .acoesStatus {
+    flex-direction: column;
+  }
+
+  .acoesStatus button {
+    width: 100%;
   }
 }
