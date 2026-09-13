@@ -8,12 +8,16 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* CONTAINER PRINCIPAL */
+
 .app {
   display: flex;
   min-height: 100vh;
+  align-items: stretch;
 }
 
 /* ÍCONE */
+
 .icone-restaurante {
   width: 200px;
   height: auto;
@@ -22,18 +26,22 @@ body {
 }
 
 /* SIDEBAR */
+
 .sidebar {
   width: 280px;
-  min-height: 100vh;
   background: #1c1a18;
   color: white;
   padding: 40px 30px;
 
   display: flex;
   flex-direction: column;
+
+  align-self: stretch;
+  flex-shrink: 0;
 }
 
 /* LOGO */
+
 .logo {
   text-align: center;
 }
@@ -51,6 +59,7 @@ body {
 }
 
 /* MENU */
+
 .menu {
   flex: 1;
 
@@ -66,6 +75,7 @@ body {
 }
 
 /* BOTÕES E LINKS */
+
 .menu button,
 .menu a {
   background: transparent;
@@ -86,12 +96,14 @@ body {
 }
 
 /* PASSAR O MOUSE */
+
 .menu button:hover,
 .menu a:hover {
   color: #c9b9a8;
 }
 
 /* CLICANDO */
+
 .menu button:active,
 .menu a:active {
   transform: scale(0.96);
@@ -99,18 +111,22 @@ body {
 }
 
 /* FRASE */
+
 .frase {
   margin-top: auto;
+
   font-size: 16px;
   color: #c9b9a8;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
   gap: 5px;
 }
 
 /* TABLET */
+
 @media (max-width: 1100px) {
   .app {
     flex-direction: column;
@@ -118,8 +134,11 @@ body {
 
   .sidebar {
     width: 100%;
+    height: auto;
     min-height: auto;
+
     padding: 20px;
+
     align-items: center;
   }
 
@@ -155,6 +174,7 @@ body {
 }
 
 /* CELULAR */
+
 @media (max-width: 700px) {
   .sidebar {
     padding: 15px 10px 25px;

@@ -1,6 +1,8 @@
 import styles from "./Mesas.module.css";
 import { useState } from "react";
 
+import axios from "axios";
+
 function Mesas() {
   const [mesas, setMesas] = useState([
     { numero: "01", status: "livre" },
@@ -19,7 +21,10 @@ function Mesas() {
 
   const [mesaSelecionada, setMesaSelecionada] = useState("");
 
-  
+  const [nome, setNome] = useState("");
+  const [data, setData] = useState("");
+  const [horario, setHorario] = useState("");
+  const [pessoas, setPessoas] = useState("");
 
   function mudarStatus(novoStatus) {
     setMesas(
@@ -29,6 +34,33 @@ function Mesas() {
           : mesa,
       ),
     );
+  }
+
+  async function salvarReserva(event) {
+    event.preventDefault();
+
+    try {
+      const resposta = await axios.post("http://localhost:3001/reservas", {
+        nome,
+        mesa: mesaSelecionada,
+        data,
+        horario,
+        pessoas,
+      });
+
+      console.log(resposta.data);
+
+      alert("Reserva salva com sucesso!");
+
+      setNome("");
+      setMesaSelecionada("");
+      setData("");
+      setHorario("");
+      setPessoas("");
+    } catch (erro) {
+      console.log("Erro ao salvar reserva:", erro);
+      alert("Erro ao salvar reserva.");
+    }
   }
 
   return (
@@ -87,10 +119,15 @@ function Mesas() {
       <div className={styles.areaReserva}>
         <h2>Nova Reserva</h2>
 
-        <form className={styles.formReserva}>
+        <form className={styles.formReserva} onSubmit={salvarReserva}>
           <label>Nome</label>
 
-          <input type="text" placeholder="Digite o nome do cliente" />
+          <input
+            type="text"
+            placeholder="Digite o nome do cliente"
+            value={nome}
+            onChange={(event) => setNome(event.target.value)}
+          />
 
           <label>Mesa</label>
 
@@ -108,14 +145,27 @@ function Mesas() {
           </select>
 
           <label>Data</label>
-          <input type="date" />
+          <input
+            type="date"
+            value={data}
+            onChange={(event) => setData(event.target.value)}
+          />
 
           <label>Horário</label>
-          <input type="time" />
+          <input
+            type="time"
+            value={horario}
+            onChange={(event) => setHorario(event.target.value)}
+          />
 
           <label>Número de pessoas</label>
 
-          <input type="number" placeholder="Ex: 2" />
+          <input
+            type="number"
+            placeholder="Ex: 2"
+            value={pessoas}
+            onChange={(event) => setPessoas(event.target.value)}
+          />
 
           <button type="submit">Salvar Reserva</button>
         </form>

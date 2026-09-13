@@ -1,6 +1,39 @@
 import styles from "./Reservas.module.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Reservas() {
+  const [reservas, setReservas] = useState([]);
+  const [busca, setBusca] = useState("");
+
+  useEffect(() => {
+    async function buscarReservas() {
+      try {
+        const resposta = await axios.get("http://localhost:3001/reservas");
+
+        setReservas(resposta.data);
+      } catch (erro) {
+        console.log("Erro ao buscar reservas:", erro);
+      }
+    }
+
+    buscarReservas();
+  }, []);
+
+  async function cancelarReserva(id) {
+    try {
+      await axios.delete(`http://localhost:3001/reservas/${id}`);
+
+      setReservas(reservas.filter((reserva) => reserva.id !== id));
+    } catch (erro) {
+      console.log("Erro ao cancelar reserva:", erro);
+    }
+  }
+
+  const reservasFiltradas = reservas.filter((reserva) =>
+    reserva.nome.toLowerCase().includes(busca.toLowerCase()),
+  );
+
   return (
     <main className={styles.reservas}>
       <div className={styles.topo}>
@@ -13,7 +46,12 @@ function Reservas() {
       </div>
 
       <div className={styles.filtros}>
-        <input type="text" placeholder="Buscar por nome do cliente..." />
+        <input
+          type="text"
+          placeholder="Buscar por nome do cliente..."
+          value={busca}
+          onChange={(event) => setBusca(event.target.value)}
+        />
 
         <input type="date" />
 
@@ -40,44 +78,24 @@ function Reservas() {
           </thead>
 
           <tbody>
-            <tr>
-              <td>Ana Silva</td>
-              <td>02</td>
-              <td>15/09/2026</td>
-              <td>19:30</td>
-              <td>2</td>
-              <td>Reservada</td>
-              <td>
-                <button>Editar</button>
-                <button>Cancelar</button>
-              </td>
-            </tr>
+            {reservasFiltradas.map((reserva) => (
+              <tr key={reserva.id}>
+                <td>{reserva.nome}</td>
+                <td>{reserva.mesa}</td>
+                <td>{reserva.data}</td>
+                <td>{reserva.horario}</td>
+                <td>{reserva.pessoas}</td>
+                <td>Reservada</td>
 
-            <tr>
-              <td>João Pereira</td>
-              <td>07</td>
-              <td>15/09/2026</td>
-              <td>20:00</td>
-              <td>4</td>
-              <td>Reservada</td>
-              <td>
-                <button>Editar</button>
-                <button>Cancelar</button>
-              </td>
-            </tr>
+                <td>
+                  <button>Editar</button>
 
-            <tr>
-              <td>Maria Souza</td>
-              <td>11</td>
-              <td>16/09/2026</td>
-              <td>21:00</td>
-              <td>3</td>
-              <td>Ocupada</td>
-              <td>
-                <button>Editar</button>
-                <button>Cancelar</button>
-              </td>
-            </tr>
+                  <button onClick={() => cancelarReserva(reserva.id)}>
+                    Cancelar
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
