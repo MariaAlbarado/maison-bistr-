@@ -30,6 +30,12 @@ function Reservas() {
     }
   }
 
+  function formatarData(data) {
+    const [ano, mes, dia] = data.split("T")[0].split("-");
+
+    return `${dia}/${mes}/${ano}`;
+  }
+
   const reservasFiltradas = reservas.filter((reserva) =>
     reserva.nome.toLowerCase().includes(busca.toLowerCase()),
   );
@@ -82,7 +88,7 @@ function Reservas() {
               <tr key={reserva.id}>
                 <td>{reserva.nome}</td>
                 <td>{reserva.mesa}</td>
-                <td>{reserva.data}</td>
+                <td>{formatarData(reserva.data)}</td>
                 <td>{reserva.horario}</td>
                 <td>{reserva.pessoas}</td>
                 <td>Reservada</td>
