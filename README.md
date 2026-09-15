@@ -1,16 +1,66 @@
-# React + Vite
+# Maison — Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+O **Maison** é uma aplicação web de gerenciamento de reservas, desenvolvida com React e integrada a uma API própria.
 
-Currently, two official plugins are available:
+O projeto foi criado para colocar em prática conceitos de desenvolvimento Front-end, consumo de API e integração com Back-end e banco de dados.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologias utilizadas
 
-## React Compiler
+- React
+- Vite
+- JavaScript
+- CSS Modules
+- Axios
+- React Hooks
+- API REST
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funcionalidades
 
-## Expanding the Oxlint configuration
+- Visualização de reservas
+- Busca de reservas
+- Integração com API
+- Consumo de dados através do Axios
+- Interface responsiva
+- Comunicação com o Back-end
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Integração com a API
+
+O Front-end realiza requisições HTTP para a API do Maison utilizando Axios.
+
+Exemplo:
+
+```javascript
+const resposta = await axios.get(`${import.meta.env.VITE_API_URL}/reservas`);
+```
+
+## Executando o projeto
+
+Clone o repositório:
+
+```bash
+git clone URL_DO_REPOSITORIO
+```
+
+Entre na pasta do projeto:
+
+```bash
+cd maison-front
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute o projeto:
+
+```bash
+npm run dev
+```
+
+## Projeto
+
+Este projeto foi desenvolvido para fins de estudo e portfólio, com foco em desenvolvimento Front-end e integração entre Front-end, API e banco de dados.
+
+Desenvolvido por **Maria Albarado**.
